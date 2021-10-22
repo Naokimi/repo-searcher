@@ -1,5 +1,11 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [ :home ]
   def home
+    @repos = params[:repos]
+  end
+
+  def search
+    # call search service
+    # respond to format
+    # redirect to home or render json repos
   end
 end

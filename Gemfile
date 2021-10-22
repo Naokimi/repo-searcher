@@ -53,15 +53,16 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'autoprefixer-rails', '10.2.5'
 gem 'database_cleaner-active_record'
 gem 'devise'
 gem 'faker'
 gem 'font-awesome-sass'
+gem 'httparty'
 gem 'pundit'
 gem 'simple_form'
 gem 'slim-rails'
+gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 group :development, :test do
   gem 'annotate'
