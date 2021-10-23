@@ -60,6 +60,8 @@ gem 'faker'
 gem 'font-awesome-sass'
 gem 'httparty'
 gem 'pundit'
+gem 'simplecov'
+gem 'simplecov-lcov', '~> 0.8.0'
 gem 'simple_form'
 gem 'slim-rails'
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
@@ -71,8 +73,4 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'rspec-rails'
-end
-
-group :test do
-  gem 'simplecov', require: false
 end
