@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe GithubCallerService, type: :service do
   subject { GithubCallerService.call(query) }
 
-
   context 'with query' do
     let(:query) { 'query' }
 
