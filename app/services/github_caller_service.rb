@@ -22,6 +22,11 @@ class GithubCallerService
       "https://api.github.com/search/repositories?q=#{query}",
       headers: { 'Authorization': "token #{ENV['GITHUB_OAUTH']}", 'Accept': 'application/vnd.github.v3+json' }
     )
-    response['items']
+
+    if response['total_count']
+      response
+    else
+      {}
+    end
   end
 end
