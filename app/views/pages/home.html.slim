@@ -1,2 +1,18 @@
-h1 Pages#home
-p Find me in app/views/pages/home.html.slim
+.container.mt-5
+  .text-center
+    h1 Github Repo Searcher
+    = form_tag root_path, method: :get do
+      = text_field_tag(:query, @query, placeholder: "Search repo name", class: 'm-3')
+      = button_tag('🔍', class: 'btn btn-default')
+
+
+  - if @repos.blank?
+    .text-center
+      p No repos found :(
+  - elsif @repos[:error]
+    .text-center
+      p = @repos[:error]
+  - else
+    ul
+      - @repos['items'].each do |repo|
+        li = link_to "#{repo['full_name']} - #{repo['description']}", repo['html_url']

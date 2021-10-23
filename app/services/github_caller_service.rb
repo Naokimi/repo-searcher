@@ -18,6 +18,8 @@ class GithubCallerService
   private
 
   def github_call
+    return {} if query.empty?
+
     response = HTTParty.get(
       "https://api.github.com/search/repositories?q=#{query}",
       headers: { 'Authorization': "token #{ENV['GITHUB_OAUTH']}", 'Accept': 'application/vnd.github.v3+json' }
@@ -26,7 +28,7 @@ class GithubCallerService
     if response['total_count']
       response
     else
-      {}
+      { error: 'The service is temporarily unavailable. Please contact the administrator' }
     end
   end
 end
