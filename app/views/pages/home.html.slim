@@ -1,18 +1,25 @@
-.container.mt-5
-  .text-center
-    h1 Github Repo Searcher
-    = form_tag root_path, method: :get do
-      = text_field_tag(:query, @query, placeholder: "Search repo name", class: 'm-3')
-      = button_tag('🔍', class: 'btn btn-default')
-
-
-  - if @repos.blank?
+.d-flex.flex-column.justify-content-between.whole-screen
+  .container.mt-5
     .text-center
-      p No repos found :(
-  - elsif @repos[:error]
-    .text-center
-      p = @repos[:error]
-  - else
-    ul
-      - @repos['items'].each do |repo|
-        li = link_to "#{repo['full_name']} - #{repo['description']}", repo['html_url']
+      h1 Github Repo Searcher
+      = form_tag root_path, method: :get do
+        = text_field_tag(:query, @query, placeholder: "Search repo name", class: 'mb-5')
+        = button_tag('🔍', class: 'btn')
+        = link_to '🗑️', root_path, class: 'btn'
+
+    - if @repos.blank?
+      p.text-center Type in the input field and click the magnifying glass to begin search
+    - elsif @repos[:error]
+      .text-center
+        p = @repos[:error]
+        p.fs-1 😭
+    - else
+      p.text-center = "#{@repos['total_count']} repos found"
+      ul.list-group
+        - @repos['items'].each do |repo|
+          li.list-group-item
+            = link_to repo['full_name'], repo['html_url']
+            = " - #{repo['description']}"
+
+  .card-footer.text-muted.mt-5.text-center
+    p Why not visit #{link_to 'this repo', 'https://github.com/Naokimi/repo-searcher'}?
