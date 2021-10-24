@@ -14,12 +14,23 @@
         p = @repos[:error]
         p.fs-1 😭
     - else
-      p.text-center = "#{@repos['total_count']} repos found"
+      p.text-center = "#{@total_count} repos found#{@total_count > 1000 ? ', but we can only display 1000' : ''}"
       ul.list-group
         - @repos['items'].each do |repo|
           li.list-group-item
             = link_to repo['full_name'], repo['html_url']
             = " - #{repo['description']}"
+      nav.mt-3
+        ul.pagination.justify-content-center
+          li.page-item
+            = link_to 'First', root_path(query: @query, page: 1, per_page: @per_page), class: 'page-link'
+          - (1..@total_pages).each do |number|
+            li.page-item
+              = link_to number, \
+                root_path(query: @query, page: number, per_page: @per_page), \
+                class: "page-link #{@current_page == number ? 'active' : 'n'}"
+          li.page-item
+            = link_to 'Last', root_path(query: @query, page: @total_pages, per_page: @per_page), class: 'page-link'
 
   .card-footer.text-muted.mt-5.text-center
     p Why not visit #{link_to 'this repo', 'https://github.com/Naokimi/repo-searcher'}?

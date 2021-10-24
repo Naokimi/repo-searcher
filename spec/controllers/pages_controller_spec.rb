@@ -8,7 +8,7 @@ RSpec.describe PagesController, type: :controller do
       let(:query) { 'query' }
 
       it 'calls the GithubService and renders repos' do
-        expect(GithubCallerService).to receive(:call)
+        expect(GithubCallerService).to receive(:call).and_return({ 'total_count' => 1 })
         subject
       end
     end
