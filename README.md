@@ -18,6 +18,9 @@ Start in your folder with dev projects
 - `bundle install`
 - `yarn install`
 - `rails db:create db:migrate db:seed`
+- `touch .env`
+
+Then finally add to your `.env` file your GitHub o-auth token in the format of `GITHUB_OAUTH=token`.
 
 ### Running
 
