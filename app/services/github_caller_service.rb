@@ -7,7 +7,7 @@ class GithubCallerService
 
   attr_reader :query, :page, :per_page
 
-  def self.call(query, page, per_page)
+  def self.call(query, page = DEFAULT_PAGE, per_page = DEFAULT_PER_PAGE)
     new(query, page, per_page).call
   end
 
